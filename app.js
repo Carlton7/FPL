@@ -1,7 +1,7 @@
 const proxyURL = 'https://cors-anywhere.herokuapp.com/';
 const baseURL = 'https://fantasy.premierleague.com/api/';
 
-export const reqType = {
+const reqType = {
   bootstrap : 'bootstrap-static/', //Overview
   element : 'element-summary/', //Players (playderID)
   events : 'events', // Get all gameweeks
@@ -13,7 +13,7 @@ export const reqType = {
   leagueClassicStanding: 'leagues-classic/' //Get league standing at current gameweek.
 }
 
-export const doCORSRequest = async (url) => {
+const doCORSRequest = async (url) => {
   const response = await fetch(proxyURL + baseURL + url);
   const myJson = await response.json();
   return myJson
@@ -30,8 +30,10 @@ const getPlayerHistory = (id) => {
   const data = doCORSRequest(`${reqType.element}${id}/`);
   return data.then(data =>{ 
     const data1 = data.history
-    console.log(data1)
+    // console.log(data1)
+    return data1
   })
 }
 
 console.log (getPlayerHistory(191))
+
