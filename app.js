@@ -30,7 +30,13 @@ const getPlayerHistory = (id) => {
   const data = doCORSRequest(`${reqType.element}${id}/`);
   return data.then(data =>{ 
     const data1 = data.history
+    //filtering through player gameweeks to retreive points where minutes > 1
+    
+    for (let gameweek = 0; gameweek < 26; gameweek++) {
+      console.log(data.history[gameweek].total_points)
+    }
     // console.log(data1)
+    
     return data1
   })
 }
