@@ -31,15 +31,17 @@ const getPlayerHistory = (id) => {
   return data.then(data =>{ 
     const data1 = data.history
     //filtering through player gameweeks to retreive points where minutes > 1
-    
-    for (let gameweek = 0; gameweek < 26; gameweek++) {
-      console.log(data.history[gameweek].total_points)
+    var total = 0
+    for (let gameweek = 0; gameweek < 25; gameweek++) {
+      if (data1[gameweek].minutes > 1) {
+        total = total + data1[gameweek].total_points
+      }
     }
     // console.log(data1)
     
-    return data1
+    return total
   })
 }
 
-console.log (getPlayerHistory(191))
+console.log (getPlayerHistory(215))
 
