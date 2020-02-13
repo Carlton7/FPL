@@ -47,5 +47,10 @@ const getPlayerHistory = (id) => {
 
 console.log (getPlayerHistory(532))
 
+const getBasic = () => {
+  const data = doCORSRequest(`${reqType.bootstrap}`);
+  return data;
+}
+console.log(getBasic())
 ///532 players?///
 
