@@ -52,5 +52,15 @@ const getBasic = () => {
   return data;
 }
 console.log(getBasic())
+
+
+const getMostCaptained = (gameweek) => {
+  const data = doCORSRequest(`${reqType.bootstrap}`);
+  return data.then(data =>{ 
+    const mostCaptained = data.events[gameweek].most_captained
+    return mostCaptained;
+  });
+}
+console.log(getMostCaptained(23))
 ///532 players?///
 
