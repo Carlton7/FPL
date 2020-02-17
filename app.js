@@ -47,11 +47,22 @@ const getPlayerHistory = (id) => {
 
 console.log (getPlayerHistory(532))
 
+const getFixtureDifficulty = (id, gameweek) => {
+  const data = doCORSRequest(`${reqType.element}${id}/`);
+  return data.then(data =>{ 
+    const data1 = data.fixtures[gameweek].difficulty
+    //filtering through player gameweek to retrieve oposition 
+    return [data1]
+  })
+}
+
+console.log (getPlayerHistory(191, 0))
+
 const getBasic = () => {
   const data = doCORSRequest(`${reqType.bootstrap}`);
   return data;
 }
-console.log(getBasic())
+// console.log(getBasic())
 
 
 const getMostCaptained = (gameweek) => {
@@ -61,6 +72,6 @@ const getMostCaptained = (gameweek) => {
     return mostCaptained;
   });
 }
-console.log(getMostCaptained(23))
+// console.log(getMostCaptained(23))
 ///532 players?///
 
