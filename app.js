@@ -24,9 +24,9 @@ const getPlayer = (id) => {
   return data;
 }
 
-console.log (getPlayer(191))
+// console.log (getPlayer(191))
 
-const getPlayerHistory = (id) => {
+const getAvPlayerPointsPerGame = (id) => {
   const data = doCORSRequest(`${reqType.element}${id}/`);
   return data.then(data =>{ 
     const data1 = data.history
@@ -40,29 +40,41 @@ const getPlayerHistory = (id) => {
       }
     }
     // console.log(data1)
-    
-    return [total, fixturesPlayed]
+    var average = Number(total)/Number(fixturesPlayed)
+    return average.toFixed(2) 
   })
 }
 
-console.log (getPlayerHistory(532))
+console.log (getAvPlayerPointsPerGame(189))
 
-const getFixtureDifficulty = (id, gameweek) => {
+// const getFixtureDifficulty = (id, gameweek) => {
+//   const data = doCORSRequest(`${reqType.element}${id}/`);
+//   return data.then(data =>{ 
+//     const data1 = data.fixtures[gameweek].difficulty
+//     //filtering through player gameweek to retrieve oposition 
+//     return [data1]
+//   })
+// }
+
+// console.log (getFixtureDifficulty(191, 0))
+
+const getNextFixtureDifficulty = (id) => {
   const data = doCORSRequest(`${reqType.element}${id}/`);
   return data.then(data =>{ 
+  var gameweek = 0
     const data1 = data.fixtures[gameweek].difficulty
     //filtering through player gameweek to retrieve oposition 
     return [data1]
   })
 }
 
-console.log (getFixtureDifficulty(191, 0))
+console.log (getNextFixtureDifficulty(189))
 
 const getBasic = () => {
   const data = doCORSRequest(`${reqType.bootstrap}`);
   return data;
 }
-console.log(getBasic())
+// console.log(getBasic())
 
 const getPlayerID = (firstName, lastName) => {
   const data = doCORSRequest(`${reqType.bootstrap}`);
@@ -71,13 +83,13 @@ const getPlayerID = (firstName, lastName) => {
     var id = 0
     for (let element = 0; element < 623; element++) {
       if (data1[element].first_name == firstName && data1[element].second_name == lastName) {
-        id = id + data1[element].id
+        id = data1[element].id
       }
     }
   return id;
   })
 }
-console.log(getPlayerID('Mohamed', 'Salah'))
+console.log(getPlayerID('Alisson', 'Ramses Becker'))
 
 const getMostCaptained = (gameweek) => {
   const data = doCORSRequest(`${reqType.bootstrap}`);
