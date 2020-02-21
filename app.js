@@ -76,7 +76,7 @@ const getBasic = () => {
 }
 console.log(getBasic())
 
-const getPlayerID = (firstName, lastName) => {
+const getPlayerInfo = (firstName, lastName) => {
   const data = doCORSRequest(`${reqType.bootstrap}`);
   return data.then(data =>{ 
     const data1 = data.elements
@@ -91,7 +91,7 @@ const getPlayerID = (firstName, lastName) => {
   return [id, team];
   })
 }
-console.log(getPlayerID('Mohamed', 'Salah'))
+console.log(getPlayerInfo('Mohamed', 'Salah'))
 
 const getMostCaptained = (gameweek) => {
   const data = doCORSRequest(`${reqType.bootstrap}`);
@@ -103,3 +103,12 @@ const getMostCaptained = (gameweek) => {
 // console.log(getMostCaptained(23))
 ///532 players?///
 
+//dificulty level of opponent by team//
+var difficultyLevel = {
+  2 : [2,4,14,18,19],
+  3 : [3,5,7,8,13,15,16,20],
+  4 : [1,6,9,12,17],
+  5 : [10, 11]
+}
+
+// console.log(difficultyLevel[3])
