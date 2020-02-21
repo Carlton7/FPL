@@ -24,7 +24,7 @@ const getPlayer = (id) => {
   return data;
 }
 
-// console.log (getPlayer(191))
+console.log (getPlayer(191))
 
 const getAvPlayerPointsPerGame = (id) => {
   const data = doCORSRequest(`${reqType.element}${id}/`);
@@ -45,7 +45,7 @@ const getAvPlayerPointsPerGame = (id) => {
   })
 }
 
-console.log (getAvPlayerPointsPerGame(189))
+console.log (getAvPlayerPointsPerGame(191))
 
 // const getFixtureDifficulty = (id, gameweek) => {
 //   const data = doCORSRequest(`${reqType.element}${id}/`);
@@ -68,28 +68,30 @@ const getNextFixtureDifficulty = (id) => {
   })
 }
 
-console.log (getNextFixtureDifficulty(189))
+console.log (getNextFixtureDifficulty(191))
 
 const getBasic = () => {
   const data = doCORSRequest(`${reqType.bootstrap}`);
   return data;
 }
-// console.log(getBasic())
+console.log(getBasic())
 
 const getPlayerID = (firstName, lastName) => {
   const data = doCORSRequest(`${reqType.bootstrap}`);
   return data.then(data =>{ 
     const data1 = data.elements
     var id = 0
+    var team = 0
     for (let element = 0; element < 623; element++) {
       if (data1[element].first_name == firstName && data1[element].second_name == lastName) {
         id = data1[element].id
+        team = data1[element].team
       }
     }
-  return id;
+  return [id, team];
   })
 }
-console.log(getPlayerID('Alisson', 'Ramses Becker'))
+console.log(getPlayerID('Mohamed', 'Salah'))
 
 const getMostCaptained = (gameweek) => {
   const data = doCORSRequest(`${reqType.bootstrap}`);
