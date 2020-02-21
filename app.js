@@ -30,16 +30,17 @@ const getAvPlayerPointsPerGame = (id) => {
   const data = doCORSRequest(`${reqType.element}${id}/`);
   return data.then(data =>{ 
     const data1 = data.history
+    const data2 = data.fixtures.length
     //filtering through player gameweeks to retreive points where minutes > 1
+    var fixturesRemaining = 38 - data2
     var total = 0
     var fixturesPlayed = 0
-    for (let gameweek = 0; gameweek < 25; gameweek++) {
+    for (let gameweek = 0; gameweek < fixturesRemaining; gameweek++) {
       if (data1[gameweek].minutes > 1) {
         total = total + data1[gameweek].total_points
         fixturesPlayed = fixturesPlayed + 1
       }
     }
-    // console.log(data1)
     var average = Number(total)/Number(fixturesPlayed)
     return average.toFixed(2) 
   })
@@ -76,7 +77,7 @@ const getBasic = () => {
 }
 console.log(getBasic())
 
-const getPlayerInfo = (firstName, lastName) => {
+const getPlayerID = (firstName, lastName) => {
   const data = doCORSRequest(`${reqType.bootstrap}`);
   return data.then(data =>{ 
     const data1 = data.elements
@@ -85,13 +86,12 @@ const getPlayerInfo = (firstName, lastName) => {
     for (let element = 0; element < 623; element++) {
       if (data1[element].first_name == firstName && data1[element].second_name == lastName) {
         id = data1[element].id
-        team = data1[element].team
       }
     }
-  return [id, team];
+  return id;
   })
 }
-console.log(getPlayerInfo('Mohamed', 'Salah'))
+console.log(getPlayerID('Mohamed', 'Salah'))
 
 const getMostCaptained = (gameweek) => {
   const data = doCORSRequest(`${reqType.bootstrap}`);
@@ -118,10 +118,10 @@ const getAvPlayerPointsPerGameBasedOnDifficulty = (id) => {
   return data.then(data =>{ 
     const data1 = data.history
     //filtering through player gameweeks to retreive points where minutes > 1
-    var total = 0
-    var fixturesPlayed = 0
     const opp = getNextFixtureDifficulty(id)
     return opp.then(opp => {
+      var total = 0
+      var fixturesPlayed = 0
       for (let gameweek = 0; gameweek < 26; gameweek++) {
         if (difficultyLevel[opp].includes(data1[gameweek].opponent_team)){
           if (data1[gameweek].minutes > 1) {
@@ -138,3 +138,6 @@ const getAvPlayerPointsPerGameBasedOnDifficulty = (id) => {
 }
 
 console.log (getAvPlayerPointsPerGameBasedOnDifficulty(191))
+
+
+
