@@ -9,25 +9,18 @@
 		<title>FPL</title>
 	</head>
 	<body>
-
-			<!-- <div class="location">
-					<h1 class="location-timezone">Timezone</h1>
-					<canvas class="icon" width="128" height="128"></canvas>
-			</div>
-			<div class="temperature">
-					<div class="degree-section">
-				<h2 class="temperature-degree">34</h2>
-				<span>F</span>
-			</div>
-				<div class="temperature-description">Its friggin cold</div>
-			</div>
-			<script src="skycons.js"></script> -->
-			<!-- <script src="./app.js" type="module" ></script> -->
-			<!-- <script src="./basicRequest.js" type="module" ></script>
-			<script src="./nextFixtureDifficulty.js" type="module" ></script>
-			<script src="./playerID.js" type="module" ></script> -->
+		
+		<p>Enter Player name (must be exact), then click "Submit":</p>
+		<form id="frm1" action="/action_page.php">
+  	First name: <input type="text" name="fname"><br>
+  	Last name: <input type="text" name="lname"><br><br>
+  	<input type="button" onclick="myFunction()" value="Submit">
+		</form>
+		
 			<script src="./playerPointsBasedOnFixtureDifficulty.js" type="module" ></script>
 			<script src="./playerPointsPerGame.js" type="module" ></script>
+			<script src="./app.js" type="module" ></script>
+			<script src="./playerForm.js" type="module" ></script>
 			
 	</body>
 </html>
