@@ -22,3 +22,5 @@ export const getPlayerForm = () => {
 console.log(getPlayerForm())
 
 export default getPlayerForm;
+
+// need to add team to each entry later on//
