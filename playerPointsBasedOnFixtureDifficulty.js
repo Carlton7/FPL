@@ -9,35 +9,46 @@ var difficultyLevel = {
   5 : [10, 11]
 }
 
-const getAvPlayerPointsPerGameBasedOnDifficulty = () => {
-  const id = getPlayerID ('Jack', 'Grealish')
-  return id.then(id =>{ 
-    const data = doCORSRequest(`${reqType.element}${id}/`);
-    return data.then(data =>{ 
-      const data1 = data.history
-      const fixt = data.fixtures.length
-      var fixturesRemaining = 38 - fixt
-      const opp = getNextFixtureDifficulty(id)
-      return opp.then(opp => {
-        var total = 0
-        var fixturesPlayed = 0
-        //filtering through player gameweeks to retreive points where minutes > 1
-        for (let gameweek = 0; gameweek < fixturesRemaining; gameweek++) {
-          if (difficultyLevel[opp].includes(data1[gameweek].opponent_team)){
-            if (data1[gameweek].minutes > 1) {
-              total = total + data1[gameweek].total_points
-              fixturesPlayed = fixturesPlayed + 1
-              // console.log(total, fixturesPlayed)
+window.addEventListener('load', ()=> {
+// let firstname1 = document.querySelector('.ppbofd-fname');
+// let lastname1 = document.querySelector('.ppbofd-lname');
+let score = document.querySelector('.player');
+
+// firstname1.textContent = firstname
+// lastname1.textContent = lastname
+  function ppbofd(firstname, lastname) {
+    // const getAvPlayerPointsPerGameBasedOnDifficulty = () => {
+
+      const id = getPlayerID (firstname, lastname)
+      return id.then(id =>{ 
+        const data = doCORSRequest(`${reqType.element}${id}/`);
+        return data.then(data =>{ 
+          const data1 = data.history
+          const fixt = data.fixtures.length
+          var fixturesRemaining = 38 - fixt
+          const opp = getNextFixtureDifficulty(id)
+          return opp.then(opp => {
+            var total = 0
+            var fixturesPlayed = 0
+            //filtering through player gameweeks to retreive points where minutes > 1
+            for (let gameweek = 0; gameweek < fixturesRemaining; gameweek++) {
+              if (difficultyLevel[opp].includes(data1[gameweek].opponent_team)){
+                if (data1[gameweek].minutes > 1) {
+                  total = total + data1[gameweek].total_points
+                  fixturesPlayed = fixturesPlayed + 1
+                  // console.log(total, fixturesPlayed)
+                }
+              }
             }
-          }
-        }
-        var average = Number(total)/Number(fixturesPlayed)
-        return average.toFixed(2) 
-      })
-    })
-  })
-}
+            var average = Number(total)/Number(fixturesPlayed)
+            score.textContent = average.toFixed(2) 
+            })
+          })
+        })
+      // }
+  }
+})
+// document.querySelector('button').addEventListener('click', ppbofd);
+// console.log(ppbofd("Mohamed", "Salah"))
 
-console.log (getAvPlayerPointsPerGameBasedOnDifficulty())
 
-export default getAvPlayerPointsPerGameBasedOnDifficulty;

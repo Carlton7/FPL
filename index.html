@@ -2,25 +2,45 @@
 
 <html lang="en">
 	<head>
+			<script src="./playerPointsPerGame.js" type="module" ></script>
+			<script src="./bootstrap.js" type="module" ></script>
+			<script src="./playerForm.js" type="module" ></script>
+			<script src="/playerPointsBasedOnFixtureDifficulty.js" type="module"></script>
+			
 		<!-- <meta charset="utf-8" /> -->
-		<meta name="viewport" content="width=device-width, inital-scale=1.0" />
+		<!-- <meta name="viewport" content="width=device-width, inital-scale=1.0" /> -->
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 		<!-- <link rel="stylesheet" href="./style.css" /> -->
 		<title>FPL</title>
 	</head>
 	<body>
 		
-		<p>Enter Player name (must be exact), then click "Submit":</p>
-		<form id="frm1" action="/action_page.php">
-  	First name: <input type="text" name="fname"><br>
-  	Last name: <input type="text" name="lname"><br><br>
-  	<input type="button" onclick="myFunction()" value="Submit">
-		</form>
+		<div>
+			<p>Enter Player name (must be exact), then click "Submit":</p>
+			<form method="POST">
+  			First name: <input type="text" name="fname" class="ppbofd-fname" id="fname1" placeholder="Type a firstname..."><br>
+  			Last name: <input type="text" name="lname" class="ppbofd-lname" id="lname1" placeholder="Type a surname..."><br>
+  			<!-- <button id = "demo" value="Submit"> -->
+				<button id="btnClick" type="button">Click</button>
+			</form>
+		</div>
+
+		<div class="player">
+				<h1 class="player-score">Score</h1>
+		</div>
+
 		
-			<script src="./playerPointsBasedOnFixtureDifficulty.js" type="module" ></script>
-			<script src="./playerPointsPerGame.js" type="module" ></script>
-			<script src="./bootstrap.js" type="module" ></script>
-			<script src="./playerForm.js" type="module" ></script>
+		<!-- <script async type="module">
+				import {ppbofd} from './playerPointsBasedOnFixtureDifficulty.js'
+				
+				document.getElementById("btnClick").onclick = getData()
+
+				function getData() {
+					var firstname = document.getElementById("fname1").value
+					var lastname = document.getElementById("lname1").value
+					document.getElementsByClassName('player-score').value = ppbofd(firstname, lastname)
+				}
+		</script> -->
 			
 	</body>
 </html>
