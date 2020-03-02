@@ -9,16 +9,12 @@ var difficultyLevel = {
   5 : [10, 11]
 }
 
-window.addEventListener('load', ()=> {
-// let firstname1 = document.querySelector('.ppbofd-fname');
-// let lastname1 = document.querySelector('.ppbofd-lname');
-let score = document.querySelector('.player');
+// window.addEventListener('load', ()=> {
+// let firstname = document.querySelector('.ppbofd-fname');
+// let lastname = document.querySelector('.ppbofd-lname');
 
-// firstname1.textContent = firstname
-// lastname1.textContent = lastname
-  function ppbofd(firstname, lastname) {
+export function ppbofd(firstname, lastname) {
     // const getAvPlayerPointsPerGameBasedOnDifficulty = () => {
-
       const id = getPlayerID (firstname, lastname)
       return id.then(id =>{ 
         const data = doCORSRequest(`${reqType.element}${id}/`);
@@ -41,14 +37,15 @@ let score = document.querySelector('.player');
               }
             }
             var average = Number(total)/Number(fixturesPlayed)
-            score.textContent = average.toFixed(2) 
+            document.getElementById('player-score').innerHTML = average.toFixed(2) 
             })
           })
         })
       // }
   }
-})
+// })
 // document.querySelector('button').addEventListener('click', ppbofd);
 // console.log(ppbofd("Mohamed", "Salah"))
 
 
+export default ppbofd;
