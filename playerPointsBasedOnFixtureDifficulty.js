@@ -37,7 +37,7 @@ export function ppbofd(firstname, lastname) {
               }
             }
             var average = Number(total)/Number(fixturesPlayed)
-            document.getElementById('player-score').innerHTML = average.toFixed(2) 
+            return average.toFixed(2) 
             })
           })
         })
@@ -45,7 +45,7 @@ export function ppbofd(firstname, lastname) {
   }
 // })
 // document.querySelector('button').addEventListener('click', ppbofd);
-// console.log(ppbofd("Mohamed", "Salah"))
+console.log(ppbofd("Mohamed", "Salah"))
 
 
 export default ppbofd;

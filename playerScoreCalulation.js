@@ -1,55 +1,4 @@
-<!DOCTYPE html>
-
-<html lang="en">
-	<head>
-			
-		<!-- <meta charset="utf-8" /> -->
-		<!-- <meta name="viewport" content="width=device-width, inital-scale=1.0" /> -->
-		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<!-- <link rel="stylesheet" href="./style.css" /> -->
-		<title>FPL</title>
-	</head>
-	<body>
-		<script>  </script>
-		<div>
-			<p>Enter Player name (must be exact), then click "Submit":</p>
-			<form method="GET">
-  			First name: <input type="text" name="fname" class="ppbofd-fname" id="fname" placeholder="Type a firstname..."><br>
-  			Last name: <input type="text" name="lname" class="ppbofd-lname" id="lname" placeholder="Type a surname..."><br>
-  			<!-- <button id = "demo" value="Submit"> -->
-				<!-- <button id="btnClick" onclick="getdata()" type="button">Click</button> -->
-				<!-- <button type="button" id="button1" value="button2">Click me</!--> -->
-				<input type="button" value="Submit" onClick="">
-			</form>
-		</div>
-
-		<div class="player">
-				<h1 class="player-score" id="player-score">Score</h1>
-		</div>
-
-		<!-- <script async type="module">
-			import {ppbofd} from './playerPointsBasedOnFixtureDifficulty.js'
-				// function getData() {
-					// var firstname = document.getElementById("fname1").value
-					// var lastname = document.getElementById("lname1").value
-				// 	// document.getElementsByClassName('player-score'). value
-				// 	// alert(firstname + '...' + lastname)
-				// 	console.log(firstname, lastname)				
-				// } -->
-		</script>
-			
-		<!-- <script>
-			function getData() {
-				var firstname = document.getElementById("fname").value
-				var lastname = document.getElementById("lname").value
-				// document.getElementsByClassName('player-score'). value
-				// alert(firstname + '...' + lastname)
-				console.log(firstname, lastname)				
-			}
-		</script> -->
-		<!-- <script src="playerScoreCalulation.js" type="text/javascript"></script> -->
-		<script>
-			const proxyURL = 'https://cors-anywhere.herokuapp.com/';
+const proxyURL = 'https://cors-anywhere.herokuapp.com/';
 const baseURL = 'https://fantasy.premierleague.com/api/';
 
 const reqType = {
@@ -132,25 +81,11 @@ function ppbofd(firstname, lastname) {
               }
             }
             var average = Number(total)/Number(fixturesPlayed)
-            document.getElementById("player-score").innerHTML = average.toFixed(2) 
+            return average.toFixed(2) 
             })
           })
         })
       // }
 }
-ppbofd("Mohamed", "Salah")
-// document.getElementById("player-score").innerHTML = ppbofd("Mohamed", "Salah")
-		</script>
 
-		<script>
-		
-		</script>
-
-	</body>
-
-	<!-- <script src="./playerPointsPerGame.js" type="module" ></script>
-	<script src="./bootstrap.js" type="module" ></script>
-	<script src="./playerForm.js" type="module" ></script> -->
-	<!-- <script src="playerPointsBasedOnFixtureDifficulty.js" type="module"></script> -->
-	<!-- <script src="playerScoreCalulation.js" type="text/javascript"></script> -->
-</html>
+console.log(ppbofd("Jordan", "Henderson"))
